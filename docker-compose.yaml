@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  customer-storage-manager:
+    image: gcr.io/tim-pmid-dev/customer-storage-manager
+    container_name: customer-storage-manager
+    hostname: customer-storage-manager
+    domainname: customer-storage-manager.local.com
+    environment:
+      - "TZ=America/Sao_Paulo"
+    networks:
+        csmwork:
+           aliases:
+              - customer-storage-manager.local.com
+    ports:
+      - 8080:8080
+
+  mongo:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: abc123
+      MONGO_INITDB_DATABASE: customerDB
+      MONGO_DATA_DIR: /data/db
+      MONGO_LOG_DIR: /dev/null
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
+    networks:
+        csmwork:
+           aliases:
+              - mongo.local.com
+
+networks:
+  csmwork:
+      driver: bridge
+
+
