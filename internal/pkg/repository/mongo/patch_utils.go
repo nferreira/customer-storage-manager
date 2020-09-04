@@ -165,8 +165,8 @@ func pathCreateCustomer() (tmpCustomer *TmpCustomer) {
 
 	var ctx_ = context.Background()
 	Id := utils.UUID()
-	var customery = &model.Customer{Id: Id, Name: "Nadilson", Ssn: Id}
-	tmpCustomer = &TmpCustomer{Id: Id, Name: "Nadilson", Ssn: Id}
+	var customery = &model.Customer{Id: Id, Name: "Nadilson"}
+	tmpCustomer = &TmpCustomer{Id: Id, Name: "Nadilson"}
 
 	type fields struct {
 		client                          *mongo.Client
