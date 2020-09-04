@@ -25,9 +25,6 @@ func (c *FindCustomerByIdRepositoryService) Execute(ctx context.Context, id stri
 	serviceContext, _ := context.WithTimeout(ctx, c.timeout)
 	customer := model.Customer{}
 
-	//fmt.Println("........TEM QUE VIM AQUI...............:", id)
-	//return nil, nil
-
 	result := c.collection.FindOne(serviceContext, bson.M{"_id": id})
 
 	if result.Err() != nil {
